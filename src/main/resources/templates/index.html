@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script type="javascript" th:src="@{/webjars/bootstrap/3.4.1/dist/js/bootstrap.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.4.1/dist/css/bootstrap.css}"/>
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script type="javascript" src="https://dnasir.com/jquery-cascading-dropdown/dist/jquery.cascadingdropdown.min.js"></script>
+    <style>
+        body {
+            /*background-color: #FCFFDD;*/
+        }
+        nav {
+            background-color: #fff;
+            overflow: hidden;
+            border-bottom: 1px solid dodgerblue;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <img th:src="@{/asserts/img/logo.gif}" alt="" class="col-xs-4">
+
+        <span class="col-xs-offset-6 col-xs-2 glyphicon glyphicon-list btn-lg" style="font-size: 75px" aria-hidden="true"></span>
+    </nav>
+
+
+    <div id="list"></div>
+
+
+    <div id="container">
+
+        <div id="chart1"></div>
+        <div id="chart2"></div>
+        <div id="chart3"></div>
+        <div id="chart4"></div>
+
+    </div>
+
+    <script>
+        console.log($)
+    </script>
+
+    <script th:src="@{/asserts/js/index.js}"></script>
+    <script th:src="@{/asserts/js/chart1.js}"></script>
+    <script th:src="@{/asserts/js/chart2.js}"></script>
+    <script th:src="@{/asserts/js/chart3.js}"></script>
+    <script th:src="@{/asserts/js/chart4.js}"></script>
+
+</body>
+</html>

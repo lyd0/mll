@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>登录</title>
+    <script type="javascript" th:src="@{/webjars/jquery/3.4.1/dist/jquery.min.js}"></script>
+    <script type="javascript" th:src="@{/webjars/bootstrap/3.4.1/dist/js/bootstrap.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.4.1/dist/css/bootstrap.css}"/>
+
+    <style>
+        body {
+            background-color: rgb(45,45,45);
+            color: white;
+        }
+        nav {
+            background-color: #fff;
+            overflow: hidden;
+            border-bottom: 1px solid dodgerblue;
+        }
+        .mgt30 {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="col-xs-12 mgt30 text-center">
+        <h3>油井动液面在线监测平台软件</h3>
+    </div>
+
+    <form class="mgt30 col-xs-10  col-xs-offset-1 text-center" th:action="@{/index}">
+        <div class="form-group">
+            <input type="un" class="form-control" id="un" placeholder="请输入用户名">
+        </div>
+        <div class="form-group">
+            <input type="up" class="form-control" id="up" placeholder="请输入密码">
+        </div>
+        <button type="submit" class="btn btn-default form-control btn-danger">登录</button>
+    </form>
+
+</div>
+
+
+</body>
+</html>
