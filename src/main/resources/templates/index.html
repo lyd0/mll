@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <title>首页</title>
 
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script th:src="@{/asserts/js/jquery.min.js}"></script>
+    <script th:src="@{/asserts/js/cascading-dropdown.js}"></script>
     <script type="javascript" th:src="@{/webjars/bootstrap/3.4.1/dist/js/bootstrap.js}"></script>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.4.1/dist/css/bootstrap.css}"/>
     <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
-    <script type="javascript" src="https://dnasir.com/jquery-cascading-dropdown/dist/jquery.cascadingdropdown.min.js"></script>
+
+
+<!--    <script type="javascript" src="https://dnasir.com/jquery-cascading-dropdown/dist/jquery.cascadingdropdown.min.js"></script>-->
     <style>
         body {
             /*background-color: #FCFFDD;*/
@@ -42,8 +45,13 @@
     </div>
 
     <script>
+        setTimeout(function(){
+            console.log($)
+        },1000)
         console.log($)
     </script>
+
+
 
     <script th:src="@{/asserts/js/index.js}"></script>
     <script th:src="@{/asserts/js/chart1.js}"></script>
