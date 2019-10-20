@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no, viewport-fit=cover">
     <title>首页</title>
 
     <script th:src="@{/asserts/js/jquery.min.js}"></script>
@@ -13,51 +14,155 @@
 
 <!--    <script type="javascript" src="https://dnasir.com/jquery-cascading-dropdown/dist/jquery.cascadingdropdown.min.js"></script>-->
     <style>
-        body {
+        body,html {
             /*background-color: #FCFFDD;*/
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
         nav {
+            height: 50px;
             background-color: #fff;
             overflow: hidden;
             border-bottom: 1px solid dodgerblue;
         }
+        #list {
+            position: absolute;
+            overflow: hidden;
+            z-index: 1001;
+            width: 100%;
+        }
+        #mask {
+            position: absolute;
+            top: 50px;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background-color: rgba(100,100,100,0.4);
+        }
+
+        select.form-control {
+            height: 50px;
+        }
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        li {
+            margin-top: 5px;
+        }
+
     </style>
 </head>
 <body>
 
     <nav>
-        <img th:src="@{/asserts/img/logo.gif}" alt="" class="col-xs-4">
+        <img width="140" height="50" th:src="@{/asserts/img/logo.gif}" alt="" class="col-xs-4">
 
-        <span class="col-xs-offset-6 col-xs-2 glyphicon glyphicon-list btn-lg" style="font-size: 75px" aria-hidden="true"></span>
+        <span id="clickbtn" class="col-xs-offset-6 col-xs-2 glyphicon glyphicon-list btn-lg" aria-hidden="true"></span>
+        <div id="mask" style="display: none"></div>
     </nav>
 
 
-    <div id="list"></div>
+    <div id="list" style="display: none">
+        <select class="oilfield form-control" name="screen">
+            <option value="">厂/队伍</option>
+        </select>
+        <select class="oilfieldCompany form-control" name="resolution">
+            <option value="">作业区</option>
+        </select>
+        <select class="wellGroupInfo form-control" name="storage">
+            <option value="">油井区</option>
+        </select>
 
-
-    <div id="container">
-
-        <div id="chart1"></div>
-        <div id="chart2"></div>
-        <div id="chart3"></div>
-        <div id="chart4"></div>
+        <ul id="wellInfo" class="list-unstyled">
+        </ul>
 
     </div>
 
-    <script>
-        setTimeout(function(){
-            console.log($)
-        },1000)
-        console.log($)
-    </script>
+
+    <div th:if="${hasData!=null}" id="container">
+
+        <div id="chart1"></div>
+        <div id="chart2"></div>
+<!--        <div id="chart3"></div>-->
+<!--        <div id="chart4"></div>-->
+
+    </div>
 
 
 
     <script th:src="@{/asserts/js/index.js}"></script>
-    <script th:src="@{/asserts/js/chart1.js}"></script>
-    <script th:src="@{/asserts/js/chart2.js}"></script>
-    <script th:src="@{/asserts/js/chart3.js}"></script>
-    <script th:src="@{/asserts/js/chart4.js}"></script>
 
+    <script th:if="${hasData!=null}">
+
+
+            var chart = Highcharts.chart('chart1', {
+                chart: {
+                    type: 'spline'
+                },
+                title: {
+                    text: '动液面波形'
+                },
+                subtitle: {
+                    text: '数据来源: 动液面在线监测系统'
+                },
+                xAxis: {
+                    title: {
+                        text: '米 (m)'
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: '振幅 (mm)'
+                    }
+                },
+                tooltip: {
+                    crosshairs: true,//垂直线
+                    shared: true//都显示
+                },
+                series: [{
+                    name: '原始波形',
+                    data: [[${couplewave}]]
+                }]
+            });
+
+
+
+
+            var chart = Highcharts.chart('chart2', {
+                chart: {
+                    type: 'spline'
+                },
+                title: {
+                    text: ''
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    title: {
+                        text: '米 (m)'
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: '振幅 (mm)'
+                    }
+                },
+                tooltip: {
+                    crosshairs: true,//垂直线
+                    shared: true//都显示
+                },
+                series: [{
+                    name: '液面波形',
+                    data: [[${oridata}]]
+                }]
+            });
+
+
+
+    </script>
 </body>
 </html>

@@ -1,25 +1,59 @@
 console.log("====index")
-// $('#list').cascadingDropdown({
-//     selectBoxes: [
-//         {
-//             selector: '.step1',
-//             selected: '4.3'
-//         },
-//         {
-//             selector: '.step2',
-//             requires: ['.step1']
-//         },
-//         {
-//             selector: '.step3',
-//             requires: ['.step1', '.step2'],
-//             onChange: function(event, value, requiredValues) {
-//                 // do stuff
-//
-//                 // event is the change event object for the current dropdown
-//                 // value is the current dropdown value
-//                 // requiredValues is an object with required dropdown values
-//                 // requirementsMet is a boolean value to indicate if all requirements (including current dropdown having a value) have been met
-//             }
-//         }
-//     ]
-// });
+//clickbtn
+$("#clickbtn").click(function (e) {
+    if($("#list").css("display") == "none") {
+        $("#mask").show();
+        $("#list").slideDown();
+
+    } else {
+        $("#mask").hide();
+        $("#list").hide();
+    }
+})
+
+
+
+
+//初始化
+$.getJSON("/list/oilfield","",function(res) {
+    var data = res.data;
+    for(index in data) {
+        $("#list .oilfield").append('<option value="'+data[index].oilfieldid+'">'+data[index].oilfieldname+'</option>')
+    }
+})
+
+$("#list .oilfield").on('change',function(e) {
+    $("#list .oilfieldCompany").html('<option value="">作业区</option>')
+    $("#list .wellGroupInfo").html('<option value="">油井区</option>')
+    $.getJSON("/list/oilfieldCompany/" + this.value,"",function(res) {
+        var data = res.data;
+        for(index in data) {
+            $("#list .oilfieldCompany").append('<option value="'+data[index].oilfieldcompanyid+'">'+data[index].oilfieldcompanyname+'</option>')
+        }
+    })
+})
+
+$("#list .oilfieldCompany").on('change',function(e) {
+    $("#list .wellGroupInfo").html('<option value="">油井区</option>')
+    $.getJSON("/list/wellGroupInfo/" + this.value,"",function(res) {
+        var data = res.data;
+        for(index in data) {
+            $("#list .wellGroupInfo").append('<option value="'+data[index].wellgroupid+'">'+data[index].wellgroupname+'</option>')
+        }
+    })
+})
+
+$("#list .wellGroupInfo").on('change',function(e) {
+    $("#list #wellInfo").html('')
+    $.getJSON("/list/wellInfo/" + this.value,"",function(res) {
+        var data = res.data;
+        console.log(data)
+        for(index in data) {
+
+            $("#list #wellInfo").append('<li><a href="/data/'+data[index].wellid+'" class="btn btn-info" well_id="'+data[index].wellid+'">'+data[index].wellname+'</a></li>')
+        }
+    })
+})
+
+
+

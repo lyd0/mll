@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/list")
 public class ListController {
 
+
+    //厂
     @Autowired
     OilfieldRepository oilfieldRepository;
     @GetMapping("/oilfield")
@@ -28,6 +30,7 @@ public class ListController {
         return AjaxResult.success(oilfieldRepository.findAll());
     }
 
+    //作业区
     @Autowired
     OilfieldCompanyRepository oilfieldCompanyRepository;
     @GetMapping("/oilfieldCompany/{id}")
@@ -38,6 +41,7 @@ public class ListController {
         return AjaxResult.success(oilfieldCompanyRepository.findAll(oilfieldCompanyExample));
     }
 
+    //油井区
     @Autowired
     WellGroupInfoRepository wellGroupInfoRepository;
     @GetMapping("/wellGroupInfo/{id}")
@@ -48,6 +52,7 @@ public class ListController {
         return AjaxResult.success(wellGroupInfoRepository.findAll(wellGroupInfoExample));
     }
 
+    //具体油井
     @Autowired
     WellInfoRepository wellInfoRepository;
     @GetMapping("/wellInfo/{id}")
