@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no, viewport-fit=cover">
     <title>首页</title>
 
+
+
     <script th:src="@{/asserts/js/jquery.min.js}"></script>
     <script th:src="@{/asserts/js/cascading-dropdown.js}"></script>
     <script type="javascript" th:src="@{/webjars/bootstrap/3.4.1/dist/js/bootstrap.js}"></script>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.4.1/dist/css/bootstrap.css}"/>
+    <link href="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
 
 
@@ -83,6 +87,19 @@
 
 
     <div th:if="${hasData!=null}" id="container">
+
+        <div class="input-group date" data-provide="datepicker">
+            <input type="text" id="datepicker_begin" class="hasDatepicker form-control">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
+        <div class="input-group date" data-provide="datepicker">
+            <input type="text" id="datepicker_end" class="hasDatepicker form-control">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
 
         <div id="chart1"></div>
         <div id="chart2"></div>

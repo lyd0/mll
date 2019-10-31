@@ -1,7 +1,6 @@
 package com.edmar.mll.common;
 import com.alibaba.fastjson.JSONObject;
 
-import java.util.HashMap;
 
 public class AjaxResult extends JSONObject {
     public static final String CODE_TAG = "code";

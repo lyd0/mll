@@ -56,4 +56,12 @@ $("#list .wellGroupInfo").on('change',function(e) {
 })
 
 
-
+//时间选择
+$( function() {
+    $('#datepicker_begin').datepicker({
+        language: "zh-CN"
+    });
+    $('#datepicker_end').datepicker({
+        language: "zh-CN"
+    });
+} );
